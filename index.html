@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>On-line Multi-view Video Summarization for Wireless Video Sensor Network</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h2 class="sub-title">The on-line repository for the paper “On-line Multi-view Video Summarization for Wireless Video Sensor Network”</h2>
+    <h1>On-line Multi-view Video Summarization for Wireless Video Sensor Network</h1>
+    <p class="name">Shun-Hsing Ou<sup>1</sup>, Chia-Han Lee<sup>2</sup>, 
+        V.Srinivasa Somayazulu<sup>3</sup>, Yen-Kuang Chen<sup>3</sup>, and Shao-Yi Chien<sup>1</sup></p>
+    <ul class="name">
+        <li><sup>1</sup>Media IC &amp; System Lab, 
+            Graduate Institute of Electronics Engineering, National Taiwan University</li>
+        <li><sup>2</sup>Research Center of Information Technology Innovation, Academic Sinica</li>
+        <li><sup>3</sup>Intel Corporation</li>
+    </ul>
+
+    <ol>
+        <li><h2>Abstract &amp; Introduction</h2>
+            <p>
+                Battery life time is critical for wireless video sensors. To enable battery-powered wireless video sensors, low-power design is required. In this paper, we consider applying multi-view summarization to wireless video sensors to remove redundant contents such that the compression and transmission power can be reduced. A low-complexity on-line multi-view video summarization scheme is proposed. Experiments show that the proposed summarization method successfully reduces the video content while keeping important events. A power analysis of the system also shows that a significant amount of energy can be saved.
+            </p>
+            <p>
+                In this repository, we provide the datasets used in the experiments described in the paper. The visualized summarization results are also provided.
+            </p>
+        </li>
+        <li><h2>Dataset</h2>
+            <p>
+                Three multi-view video datasets are used for the experiments. For each dataset, we annotated the important events. The format of the annotation file is as follows:
+            </p>
+            <p>
+                <code>
+                    view_ID start_frame end_frame <br/>
+                    ... <br/>
+                    view_ID start_frame end_frame <br/>
+                    view_ID start_frame end_frame <br/>
+                                                  <br/>
+                    view_ID start_frame end_frame <br/>
+                    ... <br/>
+                    view_ID start_frame end_frame <br/>
+                    view_ID start_frame end_frame <br/>
+                                                  <br/>
+                    view_ID start_frame end_frame <br/>
+                    ... <br/>
+                    view_ID start_frame end_frame <br/>
+                    view_ID start_frame end_frame <br/>
+                </code>
+            </p>
+            <p>
+                In the annotation file, we use empty lines to isolate blocks of different events. In each line of an event, we record the ID of the view, and the start and end frame index.
+            </p>
+            <p>The descriptions and the links of each dataset are as follows:</p>
+            <ul>
+                <li>
+                    <h3><em>Bl-7F</em></h3>
+                    <p>We installed 19 surveillance cameras in the 7th floor of the BerryLam Building in Nation Taiwan University, which cover the entire hallway and one of the office rooms as shown in the floor plan in the figure. The density of the surveillance system is high in order to simulate the scenario of wireless video sensor networks with many overlapped field of views. All the cameras are fixed and perfectly synchronized.
+                    </p>
+                    <figure>
+                        <img src="img/BL-7F_floorplan.png" alt=""/>
+                        <figcaption>The floor plan of <em>BL-7F</em>.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="img/BL7F.png" alt=""/>
+                        <figcaption>The example image of <em>BL-7F</em>.</figcaption>
+                    </figure>
+                    <ul>
+                        <li><a href="video/dataset/bl7f/bl-0.mp4">bl-0.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-1.mp4">bl-1.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-2.mp4">bl-2.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-3.mp4">bl-3.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-4.mp4">bl-4.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-5.mp4">bl-5.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-6.mp4">bl-6.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-7.mp4">bl-7.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-8.mp4">bl-8.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-9.mp4">bl-9.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-10.mp4">bl-10.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-11.mp4">bl-11.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-12.mp4">bl-12.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-13.mp4">bl-13.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-14.mp4">bl-14.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-15.mp4">bl-15.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-16.mp4">bl-16.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-17.mp4">bl-17.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl-18.mp4">bl-18.mp4</a></li>
+                        <li><a href="video/dataset/bl7f/bl7f-annotation.txt">bl7f-annotation.txt</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h3><em>Office</em></h3>
+                    <p>This is the <em>office1</em> dataset provided by [14], which was taken with 4 stably-held but non-fixed cameras in an office. The vibration of the cameras and the changing of light conditions makes it difficult to generate good video summarization. The four videos are non-synchronized, and some of the videos even suffer from unstable frame rates. Since in our system we assume sensors are synchronized before performing summarization, we manually adjust the frame rates and align the videos before conducting the experiments. Therefore, the frame rate of the videos provided below have been adjusted from the original videos provided by [14]. Also, the time offsets of each view is provided in the <em>time-offset.txt</em> below for synchronizing all the videos, where each line records the time offset in number of frame for each view. The format is as follows:</p>
+                    <code>
+                        view_ID offset <br/>
+                        view_ID offset <br/>
+                        ... <br/>
+                        view_ID offset <br/>
+                    </code>
+
+                    <figure>
+                        <img src="img/Office.png" alt=""/>
+                        <figcaption>The example image of <em>Office</em>.</figcaption>
+                    </figure>
+
+                    <ul>
+                        <li><a href="video/dataset/office/office-0.mp4">office-0.mp4</a></li>
+                        <li><a href="video/dataset/office/office-1.mp4">office-1.mp4</a></li>
+                        <li><a href="video/dataset/office/office-2.mp4">office-2.mp4</a></li>
+                        <li><a href="video/dataset/office/office-3.mp4">office-3.mp4</a></li>
+                        <li><a href="video/dataset/office/office-annotation.txt">office-annotation.txt</a></li>
+                        <li><a href="video/dataset/office/time-offset.txt">time-offset.txt</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <h3><em>Lobby</em></h3>
+                    <p>This is the <em>office lobby</em> dataset provided by [14], which was taken with 3 cameras in a large lobby area. This dataset was also taken with stably-held but non-fixed cameras. All cameras are synchronized. Compared with the <em>Office</em> dataset, this dataset contains more crowded scenes with richer activities, which makes it more difficult to be summarized. Since we used videos provided by [14] directly, the link of the repository of [14] is provided here.
+                    </p>
+                    <figure>
+                        <img src="img/Lobby.png" alt=""/>
+                        <figcaption>The example image of <em>Lobby</em>.</figcaption>
+                    </figure>
+                    <ul>
+                        <li><a href="http://cs.nju.edu.cn/ywguo/dataset/officelobby/dataset_officelobby.htm">link to <em>office lobby</em> of the repository of [14]</a></li>
+                        <li><a href="video/dataset/lobby/lobby-annotation.txt">lobby-annotation.txt</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><h2>Result</h2>
+            <p>In this section the visualized summarization results are provided. Two filtering stages of the summarization are performed as described in the paper: intra-view stage and inter-view stage.</p>
+            <ol>
+                <li>
+                    <h3>Intra-view Stage: On-line Single-view Summarization</h3>
+                    <p>
+                        Here we show the results by concatenating frames after the intra-view stage. Each result is the single-view summarized video from the original video. We also implemented [12] and [13] for comparison. For each method, we tried to figure out the best parameters to be applied for all videos. Note that we use the same parameters for all videos from all datasets for fair comparison. The quality of some of the results drops due to this limitation.
+                    </p>
+                    <ul>
+                        <li><h4><em>BL-7F</em></h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Video ID</td>
+                                        <td>Ours</td>
+                                        <td>[12], D=30</td>
+                                        <td>[12], D=90</td>
+                                        <td>[13]</td></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>bl-0</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-0.avi">bl-0.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-0.avi">bl-0.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-0.avi">bl-0.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-0.avi">bl-0.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-1</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-1.avi">bl-1.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-1.avi">bl-1.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-1.avi">bl-1.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-1.avi">bl-1.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-2</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-2.avi">bl-2.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-2.avi">bl-2.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-2.avi">bl-2.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-2.avi">bl-2.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-3</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-3.avi">bl-3.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-3.avi">bl-3.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-3.avi">bl-3.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-3.avi">bl-3.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-4</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-4.avi">bl-4.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-4.avi">bl-4.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-4.avi">bl-4.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-4.avi">bl-4.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-5</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-5.avi">bl-5.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-5.avi">bl-5.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-5.avi">bl-5.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-5.avi">bl-5.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-6</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-6.avi">bl-6.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-6.avi">bl-6.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-6.avi">bl-6.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-6.avi">bl-6.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-7</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-7.avi">bl-7.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-7.avi">bl-7.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-7.avi">bl-7.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-7.avi">bl-7.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-8</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-8.avi">bl-8.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-8.avi">bl-8.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-8.avi">bl-8.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-8.avi">bl-8.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-9</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-9.avi">bl-9.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-9.avi">bl-9.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-9.avi">bl-9.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-9.avi">bl-9.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-10</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-10.avi">bl-10.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-10.avi">bl-10.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-10.avi">bl-10.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-10.avi">bl-10.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-11</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-11.avi">bl-11.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-11.avi">bl-11.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-11.avi">bl-11.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-11.avi">bl-11.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-12</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-12.avi">bl-12.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-12.avi">bl-12.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-12.avi">bl-12.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-12.avi">bl-12.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-13</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-13.avi">bl-13.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-13.avi">bl-13.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-13.avi">bl-13.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-13.avi">bl-13.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-14</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-14.avi">bl-14.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-14.avi">bl-14.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-14.avi">bl-14.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-14.avi">bl-14.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-15</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-15.avi">bl-15.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-15.avi">bl-15.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-15.avi">bl-15.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-15.avi">bl-15.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-16</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-16.avi">bl-16.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-16.avi">bl-16.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-16.avi">bl-16.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-16.avi">bl-16.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-17</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-17.avi">bl-17.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-17.avi">bl-17.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-17.avi">bl-17.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-17.avi">bl-17.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>bl-18</td>
+                                        <td><a href="     video/result/intra/gmm/bl7f/bl-18.avi">bl-18.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/bl7f/bl-18.avi">bl-18.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/bl7f/bl-18.avi">bl-18.avi</a></td>
+                                        <td><a href="video/result/intra/compress/bl7f/bl-18.avi">bl-18.avi</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+
+                        <li><h4><em>Office</em></h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Video ID</td>
+                                        <td>Ours</td>
+                                        <td>[12], D=30</td>
+                                        <td>[12], D=90</td>
+                                        <td>[13]</td></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>office-0</td>
+                                        <td><a href="     video/result/intra/gmm/office/office-0.avi">office-0.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/office/office-0.avi">office-0.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/office/office-0.avi">office-0.avi</a></td>
+                                        <td><a href="video/result/intra/compress/office/office-0.avi">office-0.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>office-1</td>
+                                        <td><a href="     video/result/intra/gmm/office/office-1.avi">office-1.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/office/office-1.avi">office-1.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/office/office-1.avi">office-1.avi</a></td>
+                                        <td><a href="video/result/intra/compress/office/office-1.avi">office-1.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>office-2</td>
+                                        <td><a href="     video/result/intra/gmm/office/office-2.avi">office-2.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/office/office-2.avi">office-2.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/office/office-2.avi">office-2.avi</a></td>
+                                        <td><a href="video/result/intra/compress/office/office-2.avi">office-2.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>office-3</td>
+                                        <td><a href="     video/result/intra/gmm/office/office-3.avi">office-3.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/office/office-3.avi">office-3.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/office/office-3.avi">office-3.avi</a></td>
+                                        <td><a href="video/result/intra/compress/office/office-3.avi">office-3.avi</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                        <li><h4><em>Lobby</em></h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Video ID</td>
+                                        <td>Ours</td>
+                                        <td>[12], D=30</td>
+                                        <td>[12], D=90</td>
+                                        <td>[13]</td></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>lobby-0</td>
+                                        <td><a href="     video/result/intra/gmm/lobby/lobby-0.avi">lobby-0.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/lobby/lobby-0.avi">lobby-0.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/lobby/lobby-0.avi">lobby-0.avi</a></td>
+                                        <td><a href="video/result/intra/compress/lobby/lobby-0.avi">lobby-0.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>lobby-0</td>
+                                        <td><a href="     video/result/intra/gmm/lobby/lobby-1.avi">lobby-1.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/lobby/lobby-1.avi">lobby-1.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/lobby/lobby-1.avi">lobby-1.avi</a></td>
+                                        <td><a href="video/result/intra/compress/lobby/lobby-1.avi">lobby-1.avi</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>lobby-0</td>
+                                        <td><a href="     video/result/intra/gmm/lobby/lobby-2.avi">lobby-2.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d30/lobby/lobby-2.avi">lobby-2.avi</a></td>
+                                        <td><a href="video/result/intra/tree/d90/lobby/lobby-2.avi">lobby-2.avi</a></td>
+                                        <td><a href="video/result/intra/compress/lobby/lobby-2.avi">lobby-2.avi</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                </li>
+                <li><h3>Inter-view Stage: Multi-view Summarization</h3>
+                    <p>To further reduce the cross-view redundant frames, we proposed distributed view-selection algorithm. After the view-selection algorithm, important frames are streamed to the server. The server can use those frames for any other applications. In the paper, we provide a simple visualization method that can concatenate those received frames into a single video. In this section, the results are shown.</p>
+                    <p>For comparison, the results of [14] can be downloaded from its repository. Note that althought in the paper we have compared multi-view results of [12] and [13] by simply concatenate all their single-view results, there is no multi-view visualization method for them. As a result, there is no visualized mutli-view results of them provided here.</p>
+                    <table>
+                        <thead>
+                            <tr><td>Dataset</td><td>Ours</td><td>[14]</td></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><em>BL-7F</em></td>
+                                <td><a href="video/result/inter/gmm/bl7f.avi">bl7f.avi</a></td>
+                            </tr>
+                            <tr><td><em>Office</em></td>
+                                <td><a href="video/result/inter/gmm/office.avi">office.avi</a></td>
+                                <td><a href="http://cs.nju.edu.cn/ywguo/dataset/office/d_office.htm">link to <em>office1</em> of the repository of [14]</a></td>
+                            </tr>
+                            <tr><td><em>Lobby</em></td>
+                                <td><a href="video/result/inter/gmm/lobby.avi">lobby.avi</a></td>
+                                <td><a href="http://cs.nju.edu.cn/ywguo/dataset/officelobby/dataset_officelobby.htm">link <em>office lobby</em> of the repository of [14]</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ol>
+        </li>
+    </ol>
+    <h2>Reference</h2>
+    <ul class="reference">
+        <li>
+            [12] V. Valdés and J. M. Mart́ınez, “Binary tree based on-line video summarization,” in Proc. ACM TRECVid Video Summarization Workshop, Oct. 2008, pp. 134–138.
+        </li>
+        <li>
+            [13] J. Almeida, N. J. Leite, and R. da S. Torres, “Online video summarization on compressed domain,” J. of Visual Commun. and Image Representation, vol. 24, no. 6, pp. 729–738, Aug. 2013.
+        </li>
+        <li>
+            [14] Y. Fu, Y. Guo, Y. Zhu, F. Liu, C. Song, and Z.-H. Zhou, “Multi-view video summarization,” IEEE Trans. Multimedia, vol. 12, no. 7, pp. 717– 729, Nov. 2010.
+        </li>
+        <li>
+            Repository of [14]: <a href="http://cs.nju.edu.cn/ywguo/summarization.html">http://cs.nju.edu.cn/ywguo/summarization.html</a>
+        </li>
+    </ul>
+</body>
+</html>

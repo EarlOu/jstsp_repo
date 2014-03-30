@@ -1,0 +1,74 @@
+html {
+	font-family: helvetica, arial, sans-serif;
+	background-color: #fffff1;
+}
+
+
+body {
+	width: 960px;
+	margin: 32px auto;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Times New Roman', Georgia,  serif;
+}
+
+.sub-title {
+	font-size: 14px;
+	text-align: center;
+}
+
+body > h1 {
+	font-size: 24px;
+	text-align: center;
+}
+
+.name {
+	font-size: 12px;
+	text-align: center;
+	color: #333;
+}
+
+ul.name {
+	line-height: 1.5;
+	list-style: none;
+}
+
+figure {
+	width: 300px;
+	display: inline-block;
+}
+
+figure > img {
+	width: 100%;
+}
+
+figcaption {
+	font-family: 'Times New Roman', Georgia,  serif;
+	text-align: center;
+}
+
+body > ol {
+	list-style-type: upper-roman;
+}
+
+body > ol ol {
+	list-style-type: upper-alpha;
+}
+
+.reference {
+	line-height: 1.5;
+}
+
+td {
+	padding: 3px 20px;
+}
+
+thead {
+	border-top: solid 2px;
+	border-bottom: solid 1px;
+}
+
+tbody {
+	border-bottom: solid 2px;
+}
